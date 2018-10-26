@@ -5,41 +5,71 @@
 // change to your netid
 package usg170030;
 
-import usg170030.Graph.Vertex;
-import usg170030.Graph.Edge;
-import usg170030.Graph.GraphAlgorithm;
-import usg170030.Graph.Factory;
-import usg170030.Graph.Timer;
+import rbk.Graph;
+import rbk.Graph.Vertex;
+import rbk.Graph.GraphAlgorithm;
+import rbk.Graph.Factory;
 
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
+
+    public static final int INFINITY = Integer.MAX_VALUE;
+    Vertex src;
+    List<Vertex> finishList;
+
+
     public static class DFSVertex implements Factory {
-        int cno;
+
+        boolean seen;
+        DFSVertex parent;
+        int distance;  // distance of vertex from source
+
+
         public DFSVertex(Vertex u) {
+            seen = false;
+            parent = null;
+            distance = INFINITY;
         }
         public DFSVertex make(Vertex u) { return new DFSVertex(u); }
     }
 
     public DFS(Graph g) {
         super(g, new DFSVertex(null));
+        finishList = new LinkedList<>();
+
     }
 
     public static DFS depthFirstSearch(Graph g) {
+
+        
+
         return null;
     }
+
+    public void dfs_visit(Vertex src)
+    {
+        this.src = src;
+        for(Vertex u: g) {
+            get(u).seen = false;
+            get(u).parent = null;
+            get(u).distance = INFINITY;
+        }
+
+
+
+    }
+
 
     // Member function to find topological order
     public List<Vertex> topologicalOrder1() {
-        return null;
+
+        return finishList;
     }
 
-    // After running the onnected components algorithm, the component no of each vertex can be queried.
-    public int cno(Vertex u) {
-        return get(u).cno;
-    }
 
     // Find topological oder of a DAG using DFS. Returns null if g is not a DAG.
     public static List<Vertex> topologicalOrder1(Graph g) {
@@ -59,9 +89,7 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
         Graph g = Graph.readGraph(in);
         g.printGraph(false);
 
-        DFS d = new DFS(g);
-        for(Vertex u: g) {
-            System.out.println(u + "\t" + d.cno(u));
-        }
+
+
     }
 }
