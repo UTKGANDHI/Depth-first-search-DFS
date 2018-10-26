@@ -36,13 +36,6 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
         return null;
     }
 
-    // Find the number of connected components of the graph g by running dfs.
-    // Enter the component number of each vertex u in u.cno.
-    // Note that the graph g is available as a class field via GraphAlgorithm.
-    public int connectedComponents() {
-        return 0;
-    }
-
     // After running the onnected components algorithm, the component no of each vertex can be queried.
     public int cno(Vertex u) {
         return get(u).cno;
@@ -54,10 +47,6 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
         return d.topologicalOrder1();
     }
 
-    // Find topological oder of a DAG using the second algorithm. Returns null if g is not a DAG.
-    public static List<Vertex> topologicalOrder2(Graph g) {
-        return null;
-    }
 
     public static void main(String[] args) throws Exception {
         String string = "7 8   1 2 2   1 3 3   2 4 5   3 4 4   4 5 1   5 1 7   6 7 1   7 6 1 0";
@@ -71,8 +60,6 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex> {
         g.printGraph(false);
 
         DFS d = new DFS(g);
-        int numcc = d.connectedComponents();
-        System.out.println("Number of components: " + numcc + "\nu\tcno");
         for(Vertex u: g) {
             System.out.println(u + "\t" + d.cno(u));
         }
