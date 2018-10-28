@@ -76,7 +76,9 @@ public class DFS extends GraphAlgorithm<DFS.DFSVertex>
         g.printGraph(false);
 
         List<Vertex> topologicalList = DFS.topologicalOrder1(g);
-        System.out.println(topologicalList);
+        
+        System.out.println();
+        System.out.println("Topological Order of the Graph "+topologicalList);
 
     }
 
